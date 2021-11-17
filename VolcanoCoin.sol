@@ -8,8 +8,8 @@ contract VolcanoCoin {
         return totalsupply;
     }
     
-    function increasesupply(uint256 additionalsupply) public onlyowner() {
-        uint256 newtotalsupply = totalsupply + additionalsupply;
+    function newSupply(uint256) public onlyowner() {
+        uint256 newtotalSupply = totalsupply + 1000;
         emit changesupply(newtotalsupply);
     }
     
@@ -20,12 +20,14 @@ contract VolcanoCoin {
     }
     
     modifier onlyowner() {
-        require(owner == msg.sender
+        require(owner == msg.sender)
         _;
     }
     
-    event changesupply(uint256);
+    updateOwnerAddress(address newOwner) public onlyOwner {
+    owner = newOwner;
+    }
     
-    increasesupply(1000);
+    event changeSupply(uint256);
     
 }
